@@ -1217,7 +1217,7 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3371005726510938073, guid: 587d20f943a26ee4aa04c218ed5e6e90, type: 3}
   m_PrefabInstance: {fileID: 1101207239}
   m_PrefabAsset: {fileID: 0}
---- !u!21 &1285645472
+--- !u!21 &1393996837
 Material:
   serializedVersion: 8
   m_ObjectHideFlags: 0
@@ -1551,7 +1551,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 1285645472}
+  m_Material: {fileID: 1393996837}
   m_Color: {r: 0.20784314, g: 0.3372549, b: 0.29411766, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
