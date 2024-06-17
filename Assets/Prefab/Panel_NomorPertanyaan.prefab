@@ -345,7 +345,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5003618133019828506}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1811416088155804750}
+        m_TargetAssemblyTypeName: LoadScene, Assembly-CSharp
+        m_MethodName: SceneManagemen
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Materi_Gempa
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8988923988193327083
 GameObject:
   m_ObjectHideFlags: 0
@@ -358,6 +370,7 @@ GameObject:
   - component: {fileID: 7261566695009278067}
   - component: {fileID: 4766863315255872812}
   - component: {fileID: 3465810916995057818}
+  - component: {fileID: 1811416088155804750}
   m_Layer: 5
   m_Name: Panel_NomorPertanyaan
   m_TagString: Untagged
@@ -448,6 +461,18 @@ MonoBehaviour:
   r: {x: 40, y: 40, z: 0, w: 0}
   rect2props: {x: 0, y: -19.999939, z: -288.02936, w: -288.02936}
   image: {fileID: 4766863315255872812}
+--- !u!114 &1811416088155804750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8988923988193327083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87df2aeac341cdf47a8bd4762372f8d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &216440949749542578
 PrefabInstance:
   m_ObjectHideFlags: 0
