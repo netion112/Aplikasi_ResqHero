@@ -16,7 +16,7 @@ public class quiz : MonoBehaviour
         }
         else
         {
-            score = PlayerPrefs.GetInt("score") - 10;
+            score = PlayerPrefs.GetInt("score") - 0;
             if (score < 0)
             {
                 score = 0;
