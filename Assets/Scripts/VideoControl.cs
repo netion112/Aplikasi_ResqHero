@@ -1,3 +1,4 @@
+using Nobi.UiRoundedCorners;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
@@ -13,57 +14,81 @@ public class VideoControl : MonoBehaviour
     private Vector2 originalSize;
     private Vector3 originalPosition;
     private Quaternion originalRotation;
-    private RectTransform canvasRectTransform;
-    private float videoAspectRatio;
+    private Vector3 originalScale;
+    private Vector2 originalAnchorMin;
+    private Vector2 originalAnchorMax;
+    private Vector2 originalPivot;
+    private float originalRadius;
+
+    private ImageWithRoundedCorners roundedCornersScript;
 
     void Start()
     {
         fullscreenButton.onClick.AddListener(SetFullscreen);
         minimizeButton.onClick.AddListener(SetMinimize);
 
-        // Save the original size, position, and rotation
+        // Save the original size, position, rotation, scale, anchors, and pivot
         originalSize = videoImage.rectTransform.sizeDelta;
         originalPosition = videoImage.rectTransform.localPosition;
         originalRotation = videoImage.rectTransform.localRotation;
+        originalScale = videoImage.rectTransform.localScale;
+        originalAnchorMin = videoImage.rectTransform.anchorMin;
+        originalAnchorMax = videoImage.rectTransform.anchorMax;
+        originalPivot = videoImage.rectTransform.pivot;
 
-        // Get Canvas RectTransform
-        canvasRectTransform = GetComponent<RectTransform>();
+        // Get the ImageWithRoundedCorners script
+        roundedCornersScript = videoImage.GetComponent<ImageWithRoundedCorners>();
 
-        // Wait for the video to prepare and then calculate the aspect ratio
-        videoPlayer.prepareCompleted += OnVideoPrepared;
-        videoPlayer.Prepare();
-    }
-
-    private void OnVideoPrepared(VideoPlayer source)
-    {
-        videoAspectRatio = (float)videoPlayer.texture.width / (float)videoPlayer.texture.height;
+        // Save the original radius
+        if (roundedCornersScript != null)
+        {
+            originalRadius = roundedCornersScript.radius;
+        }
     }
 
     void SetFullscreen()
     {
-        // Calculate new size to match Main Camera and change aspect ratio to 16:9
-        float screenWidth = mainCamera.pixelWidth;
-        float screenHeight = mainCamera.pixelHeight;
-        float screenAspectRatio = screenWidth / screenHeight;
+        // Set anchors to stretch across the canvas
+        videoImage.rectTransform.anchorMin = new Vector2(0.5f, 0.5f);
+        videoImage.rectTransform.anchorMax = new Vector2(0.5f, 0.5f);
+        videoImage.rectTransform.pivot = new Vector2(0.5f, 0.5f);
 
-        if (screenAspectRatio > 16.0f / 9.0f)
-        {
-            videoImage.rectTransform.sizeDelta = new Vector2(screenWidth, screenWidth * (9.0f / 16.0f));
-        }
-        else
-        {
-            videoImage.rectTransform.sizeDelta = new Vector2(screenHeight * (16.0f / 9.0f), screenHeight);
-        }
+        // Center the video image
+        videoImage.rectTransform.anchoredPosition = Vector2.zero;
 
-        // Rotate Raw Image
+        // Maintain original size
+        videoImage.rectTransform.sizeDelta = originalSize;
+
+        // Rotate Raw Image on the z-axis by -90 degrees
         videoImage.rectTransform.localRotation = Quaternion.Euler(0, 0, -90);
+
+        // Scale the Raw Image to 0.313
+        videoImage.rectTransform.localScale = new Vector3(0.313f, 0.313f, 0.313f);
+
+        // Set radius to 0 and refresh the image if the script is attached
+        if (roundedCornersScript != null)
+        {
+            roundedCornersScript.radius = 0f;
+            roundedCornersScript.Refresh();
+        }
     }
 
     void SetMinimize()
     {
-        // Restore to original size, position, and rotation
+        // Restore to original size, position, rotation, scale, anchors, and pivot
         videoImage.rectTransform.sizeDelta = originalSize;
         videoImage.rectTransform.localPosition = originalPosition;
         videoImage.rectTransform.localRotation = originalRotation;
+        videoImage.rectTransform.localScale = originalScale;
+        videoImage.rectTransform.anchorMin = originalAnchorMin;
+        videoImage.rectTransform.anchorMax = originalAnchorMax;
+        videoImage.rectTransform.pivot = originalPivot;
+
+        // Restore the original radius and refresh the image if the script is attached
+        if (roundedCornersScript != null)
+        {
+            roundedCornersScript.radius = originalRadius;
+            roundedCornersScript.Refresh();
+        }
     }
 }
