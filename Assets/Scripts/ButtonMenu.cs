@@ -5,15 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class ButtonMenu : MonoBehaviour
 {
-    public GameObject Inactive_Button_Beranda;
-    public GameObject Active_Button_Beranda;
-    public GameObject Inactive_Button_Materi;
-    public GameObject Active_Button_Materi;
-    public GameObject Inactive_Button_Prestasi;
-    public GameObject Active_Button_Prestasi;
-    public GameObject Inactive_Button_Bermain;
-    public GameObject Active_Button_Bermain;
-    
+    public GameObject Button_Beranda;
+    public GameObject Button_Materi;
+    public GameObject Button_Prestasi;
+    public GameObject Button_Bermain;
+
     void Start()
     {
         DetectActiveScene();
@@ -21,18 +17,59 @@ public class ButtonMenu : MonoBehaviour
 
     void DetectActiveScene()
     {
-        Scene activeScene  = SceneManager.GetActiveScene();
+        Scene activeScene = SceneManager.GetActiveScene();
         string activeSceneName = activeScene.name;
+        string[] words = activeSceneName.Split('_');
+
+        string firstWord = words.Length > 0 ? words[0] : string.Empty;
         
-        UpdateButtonState(Inactive_Button_Beranda, Active_Button_Beranda, activeSceneName == "HomeScreen");
-        UpdateButtonState(Inactive_Button_Materi, Active_Button_Materi, activeSceneName == "Materi");
-        UpdateButtonState(Inactive_Button_Prestasi, Active_Button_Prestasi, activeSceneName == "Prestasi");
-        UpdateButtonState(Inactive_Button_Bermain, Active_Button_Bermain, activeSceneName == "Bermain");
+        SetButtonState(Button_Beranda, false);
+        SetButtonState(Button_Materi, false);
+        SetButtonState(Button_Prestasi, false);
+        SetButtonState(Button_Bermain, false);
+
+        if (firstWord == "HomeScreen")
+        {
+            SetButtonState(Button_Beranda, true, true);
+            SetButtonState(Button_Prestasi, true, false);
+        }
+        else if (firstWord == "Materi")
+        {
+            SetButtonState(Button_Beranda, true, false);
+            SetButtonState(Button_Materi, true, true);
+            SetButtonState(Button_Bermain, true, false);
+        }
+        else if (firstWord == "Prestasi")
+        {
+            SetButtonState(Button_Prestasi, true, true);
+            SetButtonState(Button_Beranda, true, false);
+        }
+        else if (firstWord == "Bermain")
+        {
+            SetButtonState(Button_Beranda, true, false);
+            SetButtonState(Button_Materi, true, false);
+            SetButtonState(Button_Bermain, true, true);
+        }
     }
-    
-    void UpdateButtonState(GameObject inactiveButton, GameObject activeButton, bool isActive)
+
+    void SetButtonState(GameObject button, bool isActive, bool isMainButton = false)
     {
-        inactiveButton.SetActive(!isActive);
-        activeButton.SetActive(isActive);
+        button.SetActive(isActive);
+
+        if (isActive)
+        {
+            Transform inactiveButton = button.transform.Find("Inactive_" + button.name);
+            Transform activeButton = button.transform.Find("Active_" + button.name);
+
+            if (inactiveButton != null && activeButton != null)
+            {
+                inactiveButton.gameObject.SetActive(!isMainButton);
+                activeButton.gameObject.SetActive(isMainButton);
+            }
+            else
+            {
+                Debug.LogWarning("Inactive or Active child not found for " + button.name);
+            }
+        }
     }
 }
