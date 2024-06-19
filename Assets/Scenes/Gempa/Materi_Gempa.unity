@@ -1720,7 +1720,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5649343904105050435, guid: e6242dcf419ee794197e70f8ec185c3a, type: 3}
   m_PrefabInstance: {fileID: 1109802659}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD
 --- !u!21 &1223905621
 Material:
   serializedVersion: 8
@@ -1760,8 +1759,6 @@ Material:
     m_Colors:
     - _WidthHeightRadius: {r: 2391, g: 1344.91, b: 164.8, a: 0}
   m_BuildTextureStacks: []
-=======
->>>>>>> 747bdb1ce87e1b27fe57d2d6450c78c3047acccf
 --- !u!1 &1282405227
 GameObject:
   m_ObjectHideFlags: 0
@@ -1793,11 +1790,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< HEAD
   m_Material: {fileID: 1223905621}
-=======
-  m_Material: {fileID: 340778581}
->>>>>>> 747bdb1ce87e1b27fe57d2d6450c78c3047acccf
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -2349,11 +2342,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< HEAD
   m_Material: {fileID: 1724629034}
-=======
-  m_Material: {fileID: 901289241}
->>>>>>> 747bdb1ce87e1b27fe57d2d6450c78c3047acccf
   m_Color: {r: 0, g: 0, b: 0, a: 0.52156866}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
