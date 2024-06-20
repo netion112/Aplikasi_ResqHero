@@ -139,12 +139,12 @@ TextureImporter:
       name: loading garis_0
       rect:
         serializedVersion: 2
-        x: 28
-        y: 474
-        width: 1863
-        height: 131
+        x: 128
+        y: 475
+        width: 401
+        height: 129
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
