@@ -5,11 +5,15 @@ using UnityEngine.Video;
 
 public class VideoControl : MonoBehaviour
 {
+    [SerializeField]
+    private Button replayButton;
+    [SerializeField]
+    private GameObject screenVideo;
+
     public VideoPlayer videoPlayer;
     public RawImage videoImage;
     public Button fullscreenButton;
     public Button minimizeButton;
-    public Camera mainCamera;
 
     private Vector2 originalSize;
     private Vector3 originalPosition;
@@ -21,11 +25,22 @@ public class VideoControl : MonoBehaviour
     private float originalRadius;
 
     private ImageWithRoundedCorners roundedCornersScript;
+    private Mask screenVideoMask;
 
     void Start()
     {
         fullscreenButton.onClick.AddListener(SetFullscreen);
         minimizeButton.onClick.AddListener(SetMinimize);
+
+        // Assign replay button listener
+        if (replayButton != null)
+        {
+            replayButton.onClick.AddListener(OnReplayButtonClicked);
+        }
+        else
+        {
+            Debug.LogError("Replay Button is not assigned!");
+        }
 
         // Save the original size, position, rotation, scale, anchors, and pivot
         originalSize = videoImage.rectTransform.sizeDelta;
@@ -43,6 +58,16 @@ public class VideoControl : MonoBehaviour
         if (roundedCornersScript != null)
         {
             originalRadius = roundedCornersScript.radius;
+        }
+
+        // Get the Mask component on ScreenVideo
+        if (screenVideo != null)
+        {
+            screenVideoMask = screenVideo.GetComponent<Mask>();
+        }
+        else
+        {
+            Debug.LogError("ScreenVideo GameObject is not assigned!");
         }
     }
 
@@ -71,6 +96,13 @@ public class VideoControl : MonoBehaviour
             roundedCornersScript.radius = 0f;
             roundedCornersScript.Refresh();
         }
+
+        // Disable Mask component and refresh
+        if (screenVideoMask != null)
+        {
+            screenVideoMask.enabled = false;
+            Canvas.ForceUpdateCanvases();
+        }
     }
 
     void SetMinimize()
@@ -89,6 +121,22 @@ public class VideoControl : MonoBehaviour
         {
             roundedCornersScript.radius = originalRadius;
             roundedCornersScript.Refresh();
+        }
+
+        // Enable Mask component and refresh
+        if (screenVideoMask != null)
+        {
+            screenVideoMask.enabled = true;
+            Canvas.ForceUpdateCanvases();
+        }
+    }
+
+    private void OnReplayButtonClicked()
+    {
+        if (videoPlayer != null)
+        {
+            videoPlayer.time = 0; // Set the time to the beginning of the video
+            videoPlayer.Play(); // Play the video from the start
         }
     }
 }
