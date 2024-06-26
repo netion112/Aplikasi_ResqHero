@@ -55,6 +55,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b690239443f13324897991d74eb3bffe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  quizObjects: []
+  answeredColor: {r: 0.25, g: 0.68, b: 0.55, a: 1}
 --- !u!1 &1846143081004390449
 GameObject:
   m_ObjectHideFlags: 0
@@ -255,7 +257,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 65fae42c29837d24c8b5f23bd6f4ada8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: aef65953c0551b74a816c907b2126e4b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

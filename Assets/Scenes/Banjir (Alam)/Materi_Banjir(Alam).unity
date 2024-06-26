@@ -123,6 +123,45 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!21 &92573904
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: UI/RoundedCorners/RoundedCorners
+  m_Shader: {fileID: 4800000, guid: 0bd2ec5d73751e34a814274a454bec41, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _ColorMask: 15
+    - _Stencil: 0
+    - _StencilComp: 8
+    - _StencilOp: 0
+    - _StencilReadMask: 255
+    - _StencilWriteMask: 255
+    - _UseUIAlphaClip: 0
+    m_Colors:
+    - _WidthHeightRadius: {r: 383.30005, g: 215.60999, b: 27.16, a: 0}
+  m_BuildTextureStacks: []
 --- !u!1 &108125087
 GameObject:
   m_ObjectHideFlags: 0
@@ -250,7 +289,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 379.93, y: 200.37}
+  m_SizeDelta: {x: 379.93, y: 109.67}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &134395046
 MonoBehaviour:
@@ -272,17 +311,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Saat gempa bumi terjadi, kita harus segera berlindung di tempat yang aman.
-    Misalnya:
-
-    1. Bersembunyi di bawah meja seperti bermain petak umpet.
-
-    2.
-    Berdiri dekat dinding yang kuat dan kokoh.
-
-    Setelah gempa berhenti, kita
-    harus keluar dari bangunan dan menjauh dari tempat berbahaya, seperti superhero
-    yang menyelamatkan diri dari bahaya.'
+  m_text: Jika terjadi banjir, kita harus segera pergi ke tempat yang lebih tinggi
+    dan aman. Setelah banjir surut, kita perlu membersihkan rumah dan lingkungan
+    dari lumpur dan sampah.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
@@ -427,45 +458,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 961181678}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!21 &518649597
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: UI/RoundedCorners/RoundedCorners
-  m_Shader: {fileID: 4800000, guid: 0bd2ec5d73751e34a814274a454bec41, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats:
-    - _ColorMask: 15
-    - _Stencil: 0
-    - _StencilComp: 8
-    - _StencilOp: 0
-    - _StencilReadMask: 255
-    - _StencilWriteMask: 255
-    - _UseUIAlphaClip: 0
-    m_Colors:
-    - _WidthHeightRadius: {r: 2391, g: 1344.91, b: 164.8, a: 0}
-  m_BuildTextureStacks: []
 --- !u!21 &555547629
 Material:
   serializedVersion: 8
@@ -506,45 +498,6 @@ Material:
     - _halfSize: {r: 210, g: 69.4731, b: 0, a: 0}
     - _r: {r: 40, g: 40, b: 0, a: 0}
     - _rect2props: {r: 0.000015258789, g: -20.00003, b: 183.4752, a: 183.4752}
-  m_BuildTextureStacks: []
---- !u!21 &567764466
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: UI/RoundedCorners/RoundedCorners
-  m_Shader: {fileID: 4800000, guid: 0bd2ec5d73751e34a814274a454bec41, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats:
-    - _ColorMask: 15
-    - _Stencil: 0
-    - _StencilComp: 8
-    - _StencilOp: 0
-    - _StencilReadMask: 255
-    - _StencilWriteMask: 255
-    - _UseUIAlphaClip: 0
-    m_Colors:
-    - _WidthHeightRadius: {r: 383.30005, g: 215.60999, b: 27.16, a: 0}
   m_BuildTextureStacks: []
 --- !u!1 &649044147
 GameObject:
@@ -662,7 +615,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 379.93, y: 187.46}
+  m_SizeDelta: {x: 379.93, y: 216.67}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &710669572
 MonoBehaviour:
@@ -684,19 +637,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Gempa bumi bisa terjadi karena beberapa hal, seperti:
+  m_text: 'Ada beberapa hal dari alam yang bisa menyebabkan banjir, seperti:
 
-    1. Pergerakan
-    lempeng bumi: Lempeng bumi itu seperti potongan puzzle raksasa yang bergerak.
+    1.
+    Hujan lebat dalam waktu lama. Hujan deras bisa membuat sungai dan danau meluap.
 
     2.
-    Letusan gunung berapi: Ketika gunung berapi meletus, itu bisa membuat bumi bergetar.
+    Salju yang mencair. Ketika musim semi datang dan salju mencair dengan cepat,
+    airnya bisa menyebabkan banjir.
 
-    3.
-    Runtuhan batuan di gua atau terowongan: Kadang-kadang, batuan di dalam gua bisa
-    runtuh dan menyebabkan gempa.
-
-'
+    3. Sungai yang meluap. Saat air sungai terlalu
+    banyak, sungai bisa meluap dan menggenangi daerah sekitarnya.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
@@ -778,45 +729,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8850981379576031449, guid: d96e29fa1dcec834eb3bcaf06279593f, type: 3}
   m_PrefabInstance: {fileID: 8556160905486246490}
   m_PrefabAsset: {fileID: 0}
---- !u!21 &803605998
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: UI/RoundedCorners/RoundedCorners
-  m_Shader: {fileID: 4800000, guid: 0bd2ec5d73751e34a814274a454bec41, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats:
-    - _ColorMask: 15
-    - _Stencil: 0
-    - _StencilComp: 8
-    - _StencilOp: 0
-    - _StencilReadMask: 255
-    - _StencilWriteMask: 255
-    - _UseUIAlphaClip: 0
-    m_Colors:
-    - _WidthHeightRadius: {r: 2391, g: 1344.91, b: 164.8, a: 0}
-  m_BuildTextureStacks: []
 --- !u!1 &815116853
 GameObject:
   m_ObjectHideFlags: 0
@@ -874,7 +786,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Apa Itu Gempa Bumi?
+  m_text: Apa Itu Banjir?
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1a7afade061906f4f991fdf2d36ae69b, type: 2}
   m_sharedMaterial: {fileID: -7747037282777329499, guid: 1a7afade061906f4f991fdf2d36ae69b, type: 2}
@@ -1001,7 +913,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
-  m_ScaleFactor: 1
+  m_ScaleFactor: 2.57
   m_ReferenceResolution: {x: 420, y: 932}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
@@ -1081,7 +993,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 998054040}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1101,8 +1013,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -209}
-  m_SizeDelta: {x: 0, y: 327.14}
+  m_AnchoredPosition: {x: 0, y: 90.62988}
+  m_SizeDelta: {x: 0, y: -272.10986}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &998054042
 MonoBehaviour:
@@ -1130,6 +1042,45 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!21 &1027148400
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: UI/RoundedCorners/RoundedCorners
+  m_Shader: {fileID: 4800000, guid: 0bd2ec5d73751e34a814274a454bec41, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _ColorMask: 15
+    - _Stencil: 0
+    - _StencilComp: 8
+    - _StencilOp: 0
+    - _StencilReadMask: 255
+    - _StencilWriteMask: 255
+    - _UseUIAlphaClip: 0
+    m_Colors:
+    - _WidthHeightRadius: {r: 383.30005, g: 215.60999, b: 27.16, a: 0}
+  m_BuildTextureStacks: []
 --- !u!1 &1048754573
 GameObject:
   m_ObjectHideFlags: 0
@@ -1187,7 +1138,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Cara Antisipasi Gempa Bumi
+  m_text: Cara Antisipasi Banjir
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1a7afade061906f4f991fdf2d36ae69b, type: 2}
   m_sharedMaterial: {fileID: -7747037282777329499, guid: 1a7afade061906f4f991fdf2d36ae69b, type: 2}
@@ -1280,6 +1231,10 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 555547629}
+    - target: {fileID: 3133835787147703592, guid: e6242dcf419ee794197e70f8ec185c3a, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 1862511376}
     - target: {fileID: 3689281018740238595, guid: e6242dcf419ee794197e70f8ec185c3a, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1507,7 +1462,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Dampak Gempa Bumi
+  m_text: Dampak Banjir
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1a7afade061906f4f991fdf2d36ae69b, type: 2}
   m_sharedMaterial: {fileID: -7747037282777329499, guid: 1a7afade061906f4f991fdf2d36ae69b, type: 2}
@@ -1621,7 +1576,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -136.46002}
+  m_AnchoredPosition: {x: 0, y: -136.45996}
   m_SizeDelta: {x: 0, y: -272.93}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1504289030
@@ -1705,47 +1660,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ShowMaskGraphic: 1
---- !u!21 &1505710979
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: UI/RoundedCorners/IndependentRoundedCorners
-  m_Shader: {fileID: 4800000, guid: d3beb88e61f88ca4393acdefb005fa70, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats:
-    - _ColorMask: 15
-    - _Stencil: 0
-    - _StencilComp: 8
-    - _StencilOp: 0
-    - _StencilReadMask: 255
-    - _StencilWriteMask: 255
-    - _UseUIAlphaClip: 0
-    m_Colors:
-    - _halfSize: {r: 210, g: 73.245, b: 0, a: 0}
-    - _r: {r: 40, g: 40, b: 0, a: 0}
-    - _rect2props: {r: 0.000015258789, g: -20, b: 186.14233, a: 186.14233}
-  m_BuildTextureStacks: []
 --- !u!1 &1534821634
 GameObject:
   m_ObjectHideFlags: 0
@@ -1803,7 +1717,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Penyebab Gempa Bumi
+  m_text: Penyebab Banjir
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1a7afade061906f4f991fdf2d36ae69b, type: 2}
   m_sharedMaterial: {fileID: -7747037282777329499, guid: 1a7afade061906f4f991fdf2d36ae69b, type: 2}
@@ -1915,7 +1829,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 379.93, y: 169.7}
+  m_SizeDelta: {x: 379.93, y: 126.67}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1682282361
 MonoBehaviour:
@@ -1937,11 +1851,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Hai teman-teman! Apakah kalian tahu apa itu gempa bumi? Gempa bumi adalah
-    getaran atau guncangan yang terjadi di permukaan bumi. Bayangkan seperti getaran
-    ketika kalian melompat di atas trampolin! Getaran ini terjadi karena batuan di
-    dalam bumi bergerak tiba-tiba. Gempa bumi bisa terjadi kapan saja dan di mana
-    saja.
+  m_text: 'Hai teman-teman! Apakah kalian tahu apa itu banjir? Banjir adalah saat
+    air meluap dan menggenangi daerah yang biasanya kering, seperti jalanan dan rumah
+    kita. Banjir bisa terjadi karena hujan deras, salju yang mencair, atau air sungai
+    yang meluap.
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
@@ -2018,6 +1933,127 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1682282359}
   m_CullTransparentMesh: 1
+--- !u!21 &1776344867
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: UI/RoundedCorners/IndependentRoundedCorners
+  m_Shader: {fileID: 4800000, guid: d3beb88e61f88ca4393acdefb005fa70, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _ColorMask: 15
+    - _Stencil: 0
+    - _StencilComp: 8
+    - _StencilOp: 0
+    - _StencilReadMask: 255
+    - _StencilWriteMask: 255
+    - _UseUIAlphaClip: 0
+    m_Colors:
+    - _halfSize: {r: 210, g: 73.245, b: 0, a: 0}
+    - _r: {r: 40, g: 40, b: 0, a: 0}
+    - _rect2props: {r: 0.000015258789, g: -20, b: 186.14233, a: 186.14233}
+  m_BuildTextureStacks: []
+--- !u!21 &1862511376
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: UI/RoundedCorners/IndependentRoundedCorners
+  m_Shader: {fileID: 4800000, guid: d3beb88e61f88ca4393acdefb005fa70, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _ColorMask: 15
+    - _Stencil: 0
+    - _StencilComp: 8
+    - _StencilOp: 0
+    - _StencilReadMask: 255
+    - _StencilWriteMask: 255
+    - _UseUIAlphaClip: 0
+    m_Colors:
+    - _halfSize: {r: 210, g: 73.245, b: 0, a: 0}
+    - _r: {r: 40, g: 40, b: 0, a: 0}
+    - _rect2props: {r: 0.000015258789, g: -20, b: 186.14233, a: 186.14233}
+  m_BuildTextureStacks: []
+--- !u!21 &1866788717
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: UI/RoundedCorners/RoundedCorners
+  m_Shader: {fileID: 4800000, guid: 0bd2ec5d73751e34a814274a454bec41, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _ColorMask: 15
+    - _Stencil: 0
+    - _StencilComp: 8
+    - _StencilOp: 0
+    - _StencilReadMask: 255
+    - _StencilWriteMask: 255
+    - _UseUIAlphaClip: 0
+    m_Colors:
+    - _WidthHeightRadius: {r: 2391, g: 1344.91, b: 164.8, a: 0}
+  m_BuildTextureStacks: []
 --- !u!1 &1878445164
 GameObject:
   m_ObjectHideFlags: 0
@@ -2186,7 +2222,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 379.93, y: 311.08}
+  m_SizeDelta: {x: 379.93, y: 231.72}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1936697612
 MonoBehaviour:
@@ -2208,23 +2244,21 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Untuk bersiap menghadapi gempa bumi, kita bisa melakukan hal-hal berikut:
+  m_text: 'Untuk mencegah banjir, kita bisa melakukan hal-hal berikut:
 
-    1.
-    Mempelajari cara berlindung yang benar: Seperti latihan pramuka di sekolah.
+    1. Membangun
+    rumah di tempat yang lebih tinggi.
 
-    2.
-    Menyiapkan perlengkapan darurat: Obat-obatan, makanan, dan air minum seperti
-    yang kita bawa saat piknik.
+    2. Membuat saluran air yang baik supaya
+    air hujan bisa mengalir dengan lancar.
 
-    3. Mengikuti latihan tanggap bencana: Seperti
-    bermain simulasi di sekolah atau di lingkungan tempat tinggal.
-
+    3. Menanam pohon di sekitar rumah
+    untuk membantu menyerap air.
 
 
-    Semoga
-    dengan mengetahui ini, kita semua bisa lebih siap dan tidak panik saat gempa
-    bumi terjadi. Tetap aman, ya teman-teman!'
+
+    Tetap jaga lingkungan kita, ya teman-teman,
+    supaya kita bisa terhindar dari banjir!'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
@@ -2434,7 +2468,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Penanggulangan Gempa Bumi
+  m_text: Penanggulangan Banjir
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1a7afade061906f4f991fdf2d36ae69b, type: 2}
   m_sharedMaterial: {fileID: -7747037282777329499, guid: 1a7afade061906f4f991fdf2d36ae69b, type: 2}
@@ -2546,7 +2580,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 379.93, y: 227.81}
+  m_SizeDelta: {x: 379.93, y: 128.46}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2022708657
 MonoBehaviour:
@@ -2568,19 +2602,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Gempa bumi bisa menyebabkan kerusakan besar, seperti:
+  m_text: 'Banjir bisa menyebabkan banyak masalah, seperti:
 
-    1. Rumah dan
-    bangunan bisa roboh seperti menara dari balok kayu yang jatuh.
+    1. Rumah dan bangunan
+    terendam air.
 
-    2. Jalan
-    bisa berlubang dan retak seperti kue yang retak saat dipanggang.
+    2. Jalan-jalan tidak bisa dilewati.
 
-    3. Tanah
-    longsor: Seperti pasir di pantai yang mengalir turun.
+    3. Tanaman pertanian
+    rusak.
 
-    4. Orang-orang bisa
-    terluka atau bahkan meninggal, jadi kita harus selalu waspada.'
+    4. Penyebaran penyakit karena air yang kotor.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
@@ -2732,7 +2764,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2033234505}
   m_CullTransparentMesh: 1
---- !u!21 &2051632916
+--- !u!21 &2061294760
 Material:
   serializedVersion: 8
   m_ObjectHideFlags: 0
@@ -2769,7 +2801,7 @@ Material:
     - _StencilWriteMask: 255
     - _UseUIAlphaClip: 0
     m_Colors:
-    - _WidthHeightRadius: {r: 383.30005, g: 215.60999, b: 27.16, a: 0}
+    - _WidthHeightRadius: {r: 2391, g: 1344.91, b: 164.8, a: 0}
   m_BuildTextureStacks: []
 --- !u!1 &2138595090
 GameObject:
@@ -2862,6 +2894,66 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 363964888}
+    - target: {fileID: 2430889117211556015, guid: d96e29fa1dcec834eb3bcaf06279593f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2430889117211556015, guid: d96e29fa1dcec834eb3bcaf06279593f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[4].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2430889117211556015, guid: d96e29fa1dcec834eb3bcaf06279593f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[4].m_Target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2430889117211556015, guid: d96e29fa1dcec834eb3bcaf06279593f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[4].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2430889117211556015, guid: d96e29fa1dcec834eb3bcaf06279593f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[4].m_MethodName
+      value: OnFullscreenButtonPressed
+      objectReference: {fileID: 0}
+    - target: {fileID: 2430889117211556015, guid: d96e29fa1dcec834eb3bcaf06279593f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[4].m_TargetAssemblyTypeName
+      value: FullscreenToggle, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2430889117211556015, guid: d96e29fa1dcec834eb3bcaf06279593f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[4].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2430889117211556015, guid: d96e29fa1dcec834eb3bcaf06279593f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[4].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2928986349435690555, guid: d96e29fa1dcec834eb3bcaf06279593f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2928986349435690555, guid: d96e29fa1dcec834eb3bcaf06279593f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2928986349435690555, guid: d96e29fa1dcec834eb3bcaf06279593f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2928986349435690555, guid: d96e29fa1dcec834eb3bcaf06279593f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2928986349435690555, guid: d96e29fa1dcec834eb3bcaf06279593f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      value: OnMinimizeButtonPressed
+      objectReference: {fileID: 0}
+    - target: {fileID: 2928986349435690555, guid: d96e29fa1dcec834eb3bcaf06279593f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
+      value: FullscreenToggle, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2928986349435690555, guid: d96e29fa1dcec834eb3bcaf06279593f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4197328262652618481, guid: d96e29fa1dcec834eb3bcaf06279593f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -2874,14 +2966,18 @@ PrefabInstance:
       propertyPath: videoPlayer
       value: 
       objectReference: {fileID: 363964888}
+    - target: {fileID: 4862242401612542669, guid: d96e29fa1dcec834eb3bcaf06279593f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5230897959342011800, guid: d96e29fa1dcec834eb3bcaf06279593f, type: 3}
       propertyPath: m_Material
       value: 
-      objectReference: {fileID: 567764466}
+      objectReference: {fileID: 1027148400}
     - target: {fileID: 5649069526241601128, guid: d96e29fa1dcec834eb3bcaf06279593f, type: 3}
       propertyPath: m_Material
       value: 
-      objectReference: {fileID: 518649597}
+      objectReference: {fileID: 1866788717}
     - target: {fileID: 6494566987179138615, guid: d96e29fa1dcec834eb3bcaf06279593f, type: 3}
       propertyPath: m_Name
       value: VideoSystem
