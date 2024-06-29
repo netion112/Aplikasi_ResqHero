@@ -7,10 +7,13 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/Scenes/SplashScreen.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    guid: e27b910c98ebb084ea6a0563c8cb47a1
   - enabled: 1
     path: Assets/Scenes/Main.unity
     guid: 347537b45eef5c34685048038bdc3eda
+  - enabled: 1
+    path: Assets/Scenes/Halaman_Setting.unity
+    guid: a650e65d02466a5448f7194c8b253968
   - enabled: 1
     path: Assets/Scenes/HomeScreen.unity
     guid: 02fa7fc713fb66f47b55ca62d03f00b2
@@ -26,4 +29,58 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Gempa (Alam)/SelectLevel_Gempa(Alam).unity
     guid: c7bfac3b119b39349a978523b6b6924c
+  - enabled: 1
+    path: Assets/Scenes/Gempa (Manusia)/Materi_Gempa(Manusia).unity
+    guid: 2f655cd95ca80184c9b4193dd74446ea
+  - enabled: 1
+    path: Assets/Scenes/Gempa (Manusia)/Quiz_Gempa(Manusia).unity
+    guid: fa30df02645f6ec44836311da11476cf
+  - enabled: 1
+    path: Assets/Scenes/Gunung meletus/Materi_GunungMeletus.unity
+    guid: 3699d99ba0ffd9a498f922c86795eccb
+  - enabled: 1
+    path: Assets/Scenes/Gunung meletus/Quiz_GunungMeletus.unity
+    guid: b53722e77cdfb794590d7e878127af4e
+  - enabled: 1
+    path: Assets/Scenes/Kebakaran rumah/Materi_KebakaranRumah.unity
+    guid: 8a970dab05a338c49a340cb304383523
+  - enabled: 1
+    path: Assets/Scenes/Kebakaran rumah/Quiz_KebakaranRumah.unity
+    guid: 6b8cac8ee8c307b4bba6255079e9b0f1
+  - enabled: 1
+    path: Assets/Scenes/Kekeringan/Materi_Kekeringan.unity
+    guid: 6bb3588d1060e654e8de2fd441b6fac0
+  - enabled: 1
+    path: Assets/Scenes/Kekeringan/Quiz_Kekeringan.unity
+    guid: 7a6e4838ccea0ca47a93a7e416c8435a
+  - enabled: 1
+    path: Assets/Scenes/Banjir (Alam)/Materi_Banjir(Alam).unity
+    guid: d2c82d2b010031648ae9ce1891fc29e2
+  - enabled: 1
+    path: Assets/Scenes/Banjir (Alam)/Quiz_Banjir(Alam).unity
+    guid: 452fe44c469a6414d854d0abba54ffbb
+  - enabled: 1
+    path: Assets/Scenes/Banjir (Manusia)/Materi_Banjir(Manusia).unity
+    guid: d7fab196d48ba514a8176872d0718c83
+  - enabled: 1
+    path: Assets/Scenes/Banjir (Manusia)/Quiz_Banjir(Manusia).unity
+    guid: 0ac0b3329d5f70848bcae5df583d9bbc
+  - enabled: 1
+    path: Assets/Scenes/Pencemaran lingkungan/Materi_PencemaranLingkungan.unity
+    guid: 37a41cbbdbd8d2d4c95df261f0c753c0
+  - enabled: 1
+    path: Assets/Scenes/Pencemaran lingkungan/Quiz_PencemaranLingkungan.unity
+    guid: cd76cc15511a7a247afc9e68a79daa63
+  - enabled: 1
+    path: Assets/Scenes/Tsunami/Materi_Tsunami.unity
+    guid: bf63fc1491f31304595431d70d1728c6
+  - enabled: 1
+    path: Assets/Scenes/Tsunami/Quiz_Tsunami.unity
+    guid: 5fb8259957f4e0b4a9435b0656e29f02
+  - enabled: 1
+    path: Assets/Scenes/Tanah longsor/Materi_TanahLongsor.unity
+    guid: 2b87a186627e87848b8ca527f10e036c
+  - enabled: 1
+    path: Assets/Scenes/Tanah longsor/Quiz_TanahLongsor.unity
+    guid: 9848bceeef2cab74f8d13ce0c8555853
   m_configObjects: {}

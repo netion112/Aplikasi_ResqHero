@@ -148,7 +148,7 @@ GameObject:
   - component: {fileID: 2915450055797038010}
   - component: {fileID: 3799123540323066854}
   m_Layer: 5
-  m_Name: Achivement Card
+  m_Name: Achivement Card 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
