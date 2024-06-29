@@ -6,26 +6,54 @@ using UnityEngine.UI;
 
 public class AchievementManager : MonoBehaviour
 {
+     // public static AchievementManager Instance { get; private set; }
+
     public GameObject achievementPrefab;
     public GameObject parentAchievement;
-    public List<Achievement> achievementDatabase;
-    // public static SaveManager Instance { get; private set; }
+    public AchievementDatabase achievementDatabase;
+    
+    public TMP_Text achievementStatus;
+    public TMP_Text achievementPercent;
+    public TMP_Text achievementPoint;
+    public Slider slider;
+
+    void Awake()
+    {
+        // if (Instance == null)
+        // {
+        //     Instance = this;
+        //     DontDestroyOnLoad(gameObject);
+        // }
+        // else
+        // {
+        //     Destroy(gameObject);
+        // }
+    }
 
     void Start()
     {
-        CreateAchievement();
+        Initialize();
     }
 
-    void Update()
+    public void Initialize()
     {
-        
+        // Load achievement data from SaveManager
+        achievementDatabase = SaveManager.Instance.achievementDatabase;
+        CreateAchievement();
+        GetTotalUnlockedAchievements();
     }
 
     public void CreateAchievement()
     {
-        foreach (Achievement achievementData in achievementDatabase)
+        // Clear UI before recreating
+        foreach (Transform child in parentAchievement.transform)
         {
-            GameObject achievement = (GameObject)Instantiate(achievementPrefab);
+            Destroy(child.gameObject);
+        }
+
+        foreach (Achievement achievementData in achievementDatabase.achievements)
+        {
+            GameObject achievement = Instantiate(achievementPrefab);
             SetAchievementInfo(parentAchievement, achievement, achievementData);
         }
     }
@@ -33,7 +61,7 @@ public class AchievementManager : MonoBehaviour
     public void SetAchievementInfo(GameObject category, GameObject achievement, Achievement achievementData)
     {
         achievement.transform.SetParent(category.transform);
-        achievement.transform.localScale = new Vector3(1,1,1);
+        achievement.transform.localScale = new Vector3(1, 1, 1);
 
         Transform spriteAchievement = achievement.transform.Find("Image");
 
@@ -42,10 +70,10 @@ public class AchievementManager : MonoBehaviour
             Image iconComponent = spriteAchievement.GetComponentInChildren<Image>();
             if (iconComponent != null)
             {
-                iconComponent.color = achievementData.isUnlock ? new Color(0.8f, 0.4f, 0.1f)  : new Color(0.5f, 0.5f, 0.5f); 
+                iconComponent.color = achievementData.isUnlock ? new Color(0.8f, 0.4f, 0.1f) : new Color(0.5f, 0.5f, 0.5f);
             }
         }
-        
+
         Transform container = achievement.transform.Find("Container Text Title Achivement");
         if (container != null)
         {
@@ -69,14 +97,34 @@ public class AchievementManager : MonoBehaviour
             Debug.LogError("ContainerTextTitleAchievement not found in the achievement prefab.");
         }
     }
-    
+
     public void UnlockAchievement(string achievementKey)
     {
-        Achievement achievement = achievementDatabase.Find(a => a.title == achievementKey);
+        Achievement achievement = achievementDatabase.achievements.Find(a => a.title == achievementKey);
         if (achievement != null)
         {
             achievement.isUnlock = true;
+            SaveManager.Instance.SaveData(); // Save achievement data after unlocking
             CreateAchievement();
+            GetTotalUnlockedAchievements();
         }
+    }
+
+    public void GetTotalUnlockedAchievements()
+    {
+        int unlockedCount = 0;
+        foreach (Achievement achievement in achievementDatabase.achievements)
+        {
+            if (achievement.isUnlock)
+            {
+                unlockedCount++;
+            }
+        }
+
+        achievementStatus.text = $"{unlockedCount} OF {achievementDatabase.achievements.Count} ACHIEVEMENTS EARNED";
+        achievementPercent.text = $"{(float)unlockedCount / achievementDatabase.achievements.Count * 100f}%";
+        achievementPoint.text = $"{unlockedCount}";
+        slider.maxValue = achievementDatabase.achievements.Count;
+        slider.value = unlockedCount;
     }
 }
