@@ -16,7 +16,7 @@ MonoBehaviour:
   - id: 1
     title: Bencana Pertamaku
     description: Selesaikan pembelajaran tentang satu jenis bencana alam.
-    isUnlock: 1
+    isUnlock: 0
   - id: 2
     title: Pengetahuan Dasar
     description: Selesaikan semua materi dasar tentang bencana alam dan buatan.
@@ -31,7 +31,7 @@ MonoBehaviour:
     isUnlock: 0
   - id: 5
     title: Pustakawan Bencana
-    description: 123123
+    description: Baca semua teks dan ilustrasi dalam aplikasi.
     isUnlock: 0
   - id: 6
     title: Peneliti Muda
