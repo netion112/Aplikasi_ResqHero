@@ -44,7 +44,7 @@ public class ButtonMenu : MonoBehaviour
             SetButtonState(Button_Prestasi, true, true);
             SetButtonState(Button_Beranda, true, false);
         }
-        else if (firstWord == "Bermain")
+        else if (firstWord == "SelectLevel")
         {
             SetButtonState(Button_Beranda, true, false);
             SetButtonState(Button_Materi, true, false);
