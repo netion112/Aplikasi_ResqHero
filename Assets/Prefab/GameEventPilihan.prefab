@@ -223,6 +223,7 @@ GameObject:
   - component: {fileID: 1669894624818926265}
   - component: {fileID: 6914608550956891109}
   - component: {fileID: 8426910244723129253}
+  - component: {fileID: 191478807116227077}
   m_Layer: 5
   m_Name: GameEventPilihan
   m_TagString: Untagged
@@ -383,6 +384,22 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &191478807116227077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4354705661199366864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68897e52e36140d4d88cd897922f0ec1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  videoPlayer: {fileID: 0}
+  objectToMove: {fileID: 4354705661199366864}
+  moveAmount: 5.8
+  returnSpeed: 3
 --- !u!1 &6153654185787472982
 GameObject:
   m_ObjectHideFlags: 0

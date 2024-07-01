@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Video;
 
 public class AudioManager : MonoBehaviour
 {
@@ -22,6 +23,11 @@ public class AudioManager : MonoBehaviour
     public Slider buttonClickVolumeSlider;
     public Slider sfxVolumeSlider; // New slider for SFX volume
 
+    [Header("Video Player")]
+    public VideoPlayer videoPlayer;
+
+    private float originalBackgroundMusicVolume;
+
     private void Awake()
     {
         // if (instance == null)
@@ -39,6 +45,14 @@ public class AudioManager : MonoBehaviour
     {
         PlayBackgroundMusicForCurrentScene();
         SetupVolumeSliders();
+
+        if (videoPlayer != null)
+        {
+            videoPlayer.started += OnVideoStart;
+            videoPlayer.loopPointReached += OnVideoEnd;
+        }
+
+        originalBackgroundMusicVolume = backgroundMusicSource.volume;
     }
 
     private void OnEnable()
@@ -49,6 +63,12 @@ public class AudioManager : MonoBehaviour
     private void OnDisable()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
+
+        if (videoPlayer != null)
+        {
+            videoPlayer.started -= OnVideoStart;
+            videoPlayer.loopPointReached -= OnVideoEnd;
+        }
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -127,5 +147,17 @@ public class AudioManager : MonoBehaviour
             sfxVolumeSlider.onValueChanged.AddListener(SetSFXVolume);
             sfxVolumeSlider.value = sfxSource.volume;
         }
+    }
+
+    private void OnVideoStart(VideoPlayer vp)
+    {
+        // Set volume musik latar menjadi 0 ketika video mulai diputar
+        backgroundMusicSource.volume = 0;
+    }
+
+    private void OnVideoEnd(VideoPlayer vp)
+    {
+        // Kembalikan volume musik latar ke nilai asli ketika video selesai diputar
+        backgroundMusicSource.volume = originalBackgroundMusicVolume;
     }
 }
