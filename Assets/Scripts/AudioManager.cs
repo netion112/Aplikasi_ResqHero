@@ -27,6 +27,8 @@ public class AudioManager : MonoBehaviour
     public VideoPlayer videoPlayer;
 
     private float originalBackgroundMusicVolume;
+    private float originalButtonClickVolume;
+    private float originalSFXVolume;
 
     private void Awake()
     {
@@ -52,7 +54,10 @@ public class AudioManager : MonoBehaviour
             videoPlayer.loopPointReached += OnVideoEnd;
         }
 
+        // Store original volumes
         originalBackgroundMusicVolume = backgroundMusicSource.volume;
+        originalButtonClickVolume = buttonClickSource.volume;
+        originalSFXVolume = sfxSource.volume;
     }
 
     private void OnEnable()
@@ -151,13 +156,45 @@ public class AudioManager : MonoBehaviour
 
     private void OnVideoStart(VideoPlayer vp)
     {
-        // Set volume musik latar menjadi 0 ketika video mulai diputar
+        // Set all audio sources' volumes to 0 when the video starts
         backgroundMusicSource.volume = 0;
+        buttonClickSource.volume = 0;
+        sfxSource.volume = 0;
     }
 
     private void OnVideoEnd(VideoPlayer vp)
     {
-        // Kembalikan volume musik latar ke nilai asli ketika video selesai diputar
+        // Restore all audio sources' volumes when the video ends
         backgroundMusicSource.volume = originalBackgroundMusicVolume;
+        buttonClickSource.volume = originalButtonClickVolume;
+        sfxSource.volume = originalSFXVolume;
+    }
+
+    public void Refresh()
+    {
+        // Refresh the audio settings to original volumes
+        backgroundMusicSource.volume = originalBackgroundMusicVolume;
+        buttonClickSource.volume = originalButtonClickVolume;
+        sfxSource.volume = originalSFXVolume;
+
+        if (masterVolumeSlider != null)
+        {
+            masterVolumeSlider.value = AudioListener.volume;
+        }
+
+        if (backgroundMusicVolumeSlider != null)
+        {
+            backgroundMusicVolumeSlider.value = originalBackgroundMusicVolume;
+        }
+
+        if (buttonClickVolumeSlider != null)
+        {
+            buttonClickVolumeSlider.value = originalButtonClickVolume;
+        }
+
+        if (sfxVolumeSlider != null)
+        {
+            sfxVolumeSlider.value = originalSFXVolume;
+        }
     }
 }
