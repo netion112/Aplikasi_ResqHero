@@ -123,7 +123,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!21 &127159504
+--- !u!21 &102935223
 Material:
   serializedVersion: 8
   m_ObjectHideFlags: 0
@@ -288,6 +288,7 @@ GameObject:
   - component: {fileID: 1078260046}
   - component: {fileID: 1078260045}
   - component: {fileID: 1078260044}
+  - component: {fileID: 1078260048}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -379,6 +380,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1078260048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1078260043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87df2aeac341cdf47a8bd4762372f8d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!21 &1676312382
 Material:
   serializedVersion: 8
@@ -1267,6 +1280,38 @@ PrefabInstance:
     - target: {fileID: 511991059925892279, guid: c362fbe80f165994f9913921a2e3c258, type: 3}
       propertyPath: m_Name
       value: Button_Level
+      objectReference: {fileID: 0}
+    - target: {fileID: 884018851757433082, guid: c362fbe80f165994f9913921a2e3c258, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 884018851757433082, guid: c362fbe80f165994f9913921a2e3c258, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 884018851757433082, guid: c362fbe80f165994f9913921a2e3c258, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1078260048}
+    - target: {fileID: 884018851757433082, guid: c362fbe80f165994f9913921a2e3c258, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 884018851757433082, guid: c362fbe80f165994f9913921a2e3c258, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SceneManagemen
+      objectReference: {fileID: 0}
+    - target: {fileID: 884018851757433082, guid: c362fbe80f165994f9913921a2e3c258, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: LoadScene, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 884018851757433082, guid: c362fbe80f165994f9913921a2e3c258, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: Game_Gempa(Alam)
+      objectReference: {fileID: 0}
+    - target: {fileID: 884018851757433082, guid: c362fbe80f165994f9913921a2e3c258, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7454795986512858050, guid: c362fbe80f165994f9913921a2e3c258, type: 3}
       propertyPath: m_Pivot.x

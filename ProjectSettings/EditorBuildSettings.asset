@@ -83,4 +83,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Tanah longsor/Quiz_TanahLongsor.unity
     guid: 9848bceeef2cab74f8d13ce0c8555853
+  - enabled: 1
+    path: Assets/Scenes/Gempa (Alam)/Game_Gempa(Alam).unity
+    guid: 41d6b1ed528dab64b9d0fd9a58ebf6ae
   m_configObjects: {}
