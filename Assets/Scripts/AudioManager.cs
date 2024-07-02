@@ -1,7 +1,9 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.Video;
+using Random = UnityEngine.Random;
 
 public class AudioManager : MonoBehaviour
 {
@@ -25,6 +27,9 @@ public class AudioManager : MonoBehaviour
 
     [Header("Video Player")]
     public VideoPlayer videoPlayer;
+
+    [Header("Ending Game")] 
+    public GameObject endingGameObject;
 
     private float originalBackgroundMusicVolume;
     private float originalButtonClickVolume;
@@ -60,6 +65,11 @@ public class AudioManager : MonoBehaviour
         originalSFXVolume = sfxSource.volume;
     }
 
+    private void Update()
+    {
+        CheckEndingCondition();
+    }
+
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -88,6 +98,22 @@ public class AudioManager : MonoBehaviour
         {
             backgroundMusicSource.clip = backgroundMusicClips[sceneIndex];
             backgroundMusicSource.Play();
+        }
+    }
+
+    private void CheckEndingCondition()
+    {
+        if (endingGameObject != null)
+        {
+            Transform happyEnding = endingGameObject.transform.Find("HappyEnding");
+            if (endingGameObject.activeSelf && happyEnding != null && happyEnding.gameObject.activeSelf)
+            {
+                backgroundMusicSource.volume = 0;
+            }
+            else
+            {
+                originalBackgroundMusicVolume = backgroundMusicSource.volume;
+            }
         }
     }
 

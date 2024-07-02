@@ -80,7 +80,7 @@ public class AudioManagerTest : MonoBehaviour
         string firstWord = words.Length > 0 ? words[0] : string.Empty;
         AudioClip selectedClip = null;
         
-        if (firstWord == "Game")
+        if (firstWord == "Game" || firstWord == "Materi")
         {
             backgroundMusicSource.volume = 0;
             buttonClickSource.volume = 0;
@@ -97,10 +97,14 @@ public class AudioManagerTest : MonoBehaviour
         {
             selectedClip = backgroundMusicClips[0]; // HomeScreen music
         }
-        else if (firstWord == "Materi")
+        else if(firstWord == "Quiz")
         {
-            selectedClip = backgroundMusicClips[1]; // Materi music
+            selectedClip = backgroundMusicClips[3];
         }
+        // else if (firstWord == "Materi")
+        // {
+        //     selectedClip = backgroundMusicClips[1]; // Materi music
+        // }
         // else if (firstWord == "Game")
         // {
         //     selectedClip = backgroundMusicClips[3];
