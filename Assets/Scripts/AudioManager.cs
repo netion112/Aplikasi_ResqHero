@@ -7,8 +7,6 @@ using Random = UnityEngine.Random;
 
 public class AudioManager : MonoBehaviour
 {
-    // public static AudioManager instance;
-
     [Header("Audio Sources")]
     public AudioSource backgroundMusicSource;
     public AudioSource buttonClickSource;
@@ -23,13 +21,13 @@ public class AudioManager : MonoBehaviour
     public Slider masterVolumeSlider;
     public Slider backgroundMusicVolumeSlider;
     public Slider buttonClickVolumeSlider;
-    public Slider sfxVolumeSlider; // New slider for SFX volume
+    public Slider sfxVolumeSlider;
 
     [Header("Video Player")]
     public VideoPlayer videoPlayer;
 
-    [Header("Ending Game")] 
-    public GameObject endingGameObject;
+    [Header("Ending Game Objects")]
+    public GameObject[] endingGameObjects; // Daftar game object yang mempengaruhi volume musik
 
     private float originalBackgroundMusicVolume;
     private float originalButtonClickVolume;
@@ -37,6 +35,7 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
+        // Uncomment this section if you want the AudioManager to persist between scenes
         // if (instance == null)
         // {
         //     instance = this;
@@ -103,17 +102,24 @@ public class AudioManager : MonoBehaviour
 
     private void CheckEndingCondition()
     {
-        if (endingGameObject != null)
+        bool anyActive = false;
+
+        foreach (var obj in endingGameObjects)
         {
-            Transform happyEnding = endingGameObject.transform.Find("HappyEnding");
-            if (endingGameObject.activeSelf && happyEnding != null && happyEnding.gameObject.activeSelf)
+            if (obj != null && obj.activeSelf)
             {
-                backgroundMusicSource.volume = 0;
+                anyActive = true;
+                break;
             }
-            else
-            {
-                originalBackgroundMusicVolume = backgroundMusicSource.volume;
-            }
+        }
+
+        if (anyActive)
+        {
+            backgroundMusicSource.volume = 0;
+        }
+        else
+        {
+            backgroundMusicSource.volume = originalBackgroundMusicVolume;
         }
     }
 
