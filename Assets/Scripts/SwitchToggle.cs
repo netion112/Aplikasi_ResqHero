@@ -36,14 +36,22 @@ public class SwitchToggle : MonoBehaviour
 
     void OnSwitch(bool on)
     {
-        //uiHandleRectTransform.anchoredPosition = on ? handlePosition * -1 : handlePosition ; // no anim
+        // Animasi untuk switch
         uiHandleRectTransform.DOAnchorPos(on ? handlePosition * -1 : handlePosition, .4f).SetEase(Ease.InOutBack);
-
-        //backgroundImage.color = on ? backgroundActiveColor : backgroundDefaultColor ; // no anim
         backgroundImage.DOColor(on ? backgroundActiveColor : backgroundDefaultColor, .6f);
-
-        //handleImage.color = on ? handleActiveColor : handleDefaultColor ; // no anim
         handleImage.DOColor(on ? handleActiveColor : handleDefaultColor, .4f);
+
+        // Aktifkan atau nonaktifkan notifikasi
+        if (on)
+        {
+            NotificationController.notificationsEnabled = true;
+            Debug.Log("Notifications Enabled");
+        }
+        else
+        {
+            NotificationController.notificationsEnabled = false;
+            Debug.Log("Notifications Disabled");
+        }
     }
 
     void OnDestroy()
