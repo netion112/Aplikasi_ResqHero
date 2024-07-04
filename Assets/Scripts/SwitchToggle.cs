@@ -41,17 +41,7 @@ public class SwitchToggle : MonoBehaviour
         backgroundImage.DOColor(on ? backgroundActiveColor : backgroundDefaultColor, .6f);
         handleImage.DOColor(on ? handleActiveColor : handleDefaultColor, .4f);
 
-        // Aktifkan atau nonaktifkan notifikasi
-        if (on)
-        {
-            NotificationController.notificationsEnabled = true;
-            Debug.Log("Notifications Enabled");
-        }
-        else
-        {
-            NotificationController.notificationsEnabled = false;
-            Debug.Log("Notifications Disabled");
-        }
+        
     }
 
     void OnDestroy()
