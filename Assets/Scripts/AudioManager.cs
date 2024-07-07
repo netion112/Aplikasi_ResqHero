@@ -6,6 +6,8 @@ using UnityEngine.Video;
 
 public class AudioManager : MonoBehaviour
 {
+    public static AudioManager Instance { get; private set; }
+
     [Header("Audio Clips")]
     public AudioClip combinedClip;  // Menggabungkan audio clip untuk Prestasi, Main, HomeScreen, dan Halaman_Setting
     public AudioClip gameClip;
@@ -37,6 +39,19 @@ public class AudioManager : MonoBehaviour
     // New variables for tracking audio state
     private static string currentClipName;
     private static float currentClipTime;
+    
+    // void Awake()
+    // {
+    //     if (Instance == null)
+    //     {
+    //         Instance = this;
+    //         DontDestroyOnLoad(gameObject);
+    //     }
+    //     else
+    //     {
+    //         Destroy(gameObject);
+    //     }
+    // }
 
     private void Start()
     {
@@ -45,6 +60,7 @@ public class AudioManager : MonoBehaviour
         LoadSettings(); // Load settings on start
         SetupVolumeSliders();
         SetupToggle();
+        LoadMusicPosition();
 
         if (videoPlayer != null)
         {
@@ -74,6 +90,12 @@ public class AudioManager : MonoBehaviour
             }
 
             wasPlaying = videoPlayer.isPlaying;
+        }
+        
+        if (musicSource != null && musicSource.isPlaying)
+        {
+            currentClipName = musicSource.clip.name;
+            currentClipTime = musicSource.time;
         }
     }
 
@@ -117,24 +139,35 @@ public class AudioManager : MonoBehaviour
     private void PlayBackgroundMusic()
     {
         string sceneName = SceneManager.GetActiveScene().name;
-        AudioClip clip = GetClipForScene(sceneName);
-
+        string[] activeSceneName = sceneName.Split('_');
+        string firstSceneWord = activeSceneName.Length > 0 ? activeSceneName[0] : string.Empty;
+        
+        AudioClip clip = GetClipForScene(firstSceneWord);
+    
         if (clip != null && musicSource != null)
         {
-            // If the clip is the same as the previous scene's clip, continue from where it left off
+            // Jika clip sama dengan yang sebelumnya dan masih ada waktu tersimpan
             if (clip.name == currentClipName && currentClipTime > 0)
             {
+                // Jika sudah bermain dan clipnya sama, jangan lakukan apa-apa
+                if (musicSource.isPlaying && musicSource.clip == clip)
+                {
+                    return;
+                }
+                
                 musicSource.clip = clip;
                 musicSource.time = currentClipTime;
                 musicSource.Play();
-                currentClipTime = 0;  // Reset the saved time
             }
             else
             {
+                // Jika clip berbeda atau tidak ada waktu tersimpan, mulai dari awal
                 musicSource.clip = clip;
+                musicSource.time = 0;
                 musicSource.Play();
             }
-
+    
+            currentClipName = clip.name;
             musicSource.volume = backgroundMusicVolume;
         }
         else if (clip == null)
@@ -145,7 +178,7 @@ public class AudioManager : MonoBehaviour
 
     private AudioClip GetClipForScene(string sceneName)
     {
-        if (sceneName == "Prestasi" || sceneName == "Main" || sceneName == "HomeScreen" || sceneName == "Halaman_Setting" || sceneName == "SelectLevel")
+        if (sceneName == "Prestasi" || sceneName == "Main" || sceneName == "HomeScreen" || sceneName == "Halaman" || sceneName == "SelectLevel")
         {
             return combinedClip;
         }
@@ -315,27 +348,35 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    private void OnApplicationQuit()
-    {
-        // Save the current clip name and time when the application quits
-        if (musicSource != null && musicSource.clip != null)
-        {
-            currentClipName = musicSource.clip.name;
-            currentClipTime = musicSource.time;
-        }
-    }
-
     private void OnApplicationPause(bool pause)
     {
         if (pause)
         {
-            // Save the current clip name and time when the application is paused
-            if (musicSource != null && musicSource.clip != null)
-            {
-                currentClipName = musicSource.clip.name;
-                currentClipTime = musicSource.time;
-            }
+            SaveMusicPosition();
         }
+    }
+
+    private void OnApplicationQuit()
+    {
+        SaveMusicPosition();
+    }
+    
+    private void SaveMusicPosition()
+    {
+        if (musicSource != null && musicSource.clip != null)
+        {
+            currentClipName = musicSource.clip.name;
+            currentClipTime = musicSource.time;
+            PlayerPrefs.SetString("CurrentClipName", currentClipName);
+            PlayerPrefs.SetFloat("CurrentClipTime", currentClipTime);
+            PlayerPrefs.Save();
+        }
+    }
+    
+    private void LoadMusicPosition()
+    {
+        currentClipName = PlayerPrefs.GetString("CurrentClipName", "");
+        currentClipTime = PlayerPrefs.GetFloat("CurrentClipTime", 0f);
     }
 
     private void LoadSettings()
