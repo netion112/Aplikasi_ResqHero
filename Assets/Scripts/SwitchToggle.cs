@@ -28,6 +28,9 @@ public class SwitchToggle : MonoBehaviour
         backgroundDefaultColor = backgroundImage.color;
         handleDefaultColor = handleImage.color;
 
+        // Mengatur kondisi default menjadi on
+        toggle.isOn = true;
+
         toggle.onValueChanged.AddListener(OnSwitch);
 
         if (toggle.isOn)
@@ -40,8 +43,6 @@ public class SwitchToggle : MonoBehaviour
         uiHandleRectTransform.DOAnchorPos(on ? handlePosition * -1 : handlePosition, .4f).SetEase(Ease.InOutBack);
         backgroundImage.DOColor(on ? backgroundActiveColor : backgroundDefaultColor, .6f);
         handleImage.DOColor(on ? handleActiveColor : handleDefaultColor, .4f);
-
-        
     }
 
     void OnDestroy()

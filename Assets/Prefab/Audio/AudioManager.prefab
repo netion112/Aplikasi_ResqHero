@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &133217143138617394
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7623323231079463193}
+  - component: {fileID: 7469773997898200960}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7623323231079463193
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 133217143138617394}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7469773997898200960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 133217143138617394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 505a8af6821e8644f80690ffb2e492be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  combinedClip: {fileID: 8300000, guid: 3c047a51c9b2e2f45be8a17e1ba33119, type: 3}
+  gameClip: {fileID: 8300000, guid: 6f7e952c819d3cd4aa7ba072a1acfaa4, type: 3}
+  materiClip: {fileID: 8300000, guid: 8cee45fad1154ba4b8570ba39f124f14, type: 3}
+  quizClip: {fileID: 8300000, guid: 85bdd6332906de74598daaa32e4f4b66, type: 3}
+  buttonClickClips:
+  - {fileID: 8300000, guid: b79003ff8817d004b8f0723b540a80b1, type: 3}
+  - {fileID: 8300000, guid: 10958db6da4415545ac74847b352ad3d, type: 3}
+  - {fileID: 8300000, guid: fbc40042d64bee349ac14e6f6e59ef70, type: 3}
+  masterVolumeSlider: {fileID: 6856169843557389637, guid: 8430d5c3cabc76947a6e3884fa05af7f, type: 3}
+  backgroundMusicVolumeSlider: {fileID: 537038956867917832, guid: 5965b425832ea8646a79e13b8970d5af, type: 3}
+  buttonClickVolumeSlider: {fileID: 780659414179330617, guid: e90e0f0792d14764fae3a39e9d594e25, type: 3}
+  videoPlayer: {fileID: 0}
+  endingGameObjects: []
+  switchToggle: {fileID: 3011318312663046848, guid: 283e8bfc073c50845a943c320a5fd711, type: 3}
