@@ -7,15 +7,15 @@ using UnityEngine.UI;
 public class Achievement
 {
     public int id;
-    public Image logo;
+    public Sprite image;
     public string title;
     public string description;
     public bool isUnlock;
 
-    public Achievement(int id,Image logo, string title, string description, bool isUnlock)
+    public Achievement(int id, string title, string description, bool isUnlock, Sprite image)
     {
         this.id = id;
-        this.logo = logo;
+        this.image = image;
         this.title = title;
         this.description = description;
         this.isUnlock = isUnlock;

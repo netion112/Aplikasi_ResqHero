@@ -63,15 +63,33 @@ public class AchievementManager : MonoBehaviour
         achievement.transform.SetParent(category.transform);
         achievement.transform.localScale = new Vector3(1, 1, 1);
 
-        Transform spriteAchievement = achievement.transform.Find("Image");
-
-        if (spriteAchievement != null)
+        Transform imageTransform = achievement.transform.Find("Image");
+        if (imageTransform != null)
         {
-            Image iconComponent = spriteAchievement.GetComponentInChildren<Image>();
-            if (iconComponent != null)
+            Image imageComponent = imageTransform.GetComponentInChildren<Image>();
+            imageComponent.color = achievementData.isUnlock ? new Color(0.8f, 0.4f, 0.1f) : new Color(0.5f, 0.5f, 0.5f);
+            
+            Transform iconTransform = imageTransform.Find("Icon");
+            if (iconTransform != null)
             {
-                iconComponent.color = achievementData.isUnlock ? new Color(0.8f, 0.4f, 0.1f) : new Color(0.5f, 0.5f, 0.5f);
+                Image iconComponent = iconTransform.GetComponentInChildren<Image>();
+                if (iconComponent != null)
+                {
+                    iconComponent.sprite = achievementData.image;
+                }
+                else
+                {
+                    Debug.LogError("Image component not found in the Icon GameObject.");
+                }
             }
+            else
+            {
+                Debug.LogError("Icon GameObject not found in the Image GameObject.");
+            }
+        }
+        else
+        {
+            Debug.LogError("Image GameObject not found in the achievement prefab.");
         }
 
         Transform container = achievement.transform.Find("Container Text Title Achivement");
