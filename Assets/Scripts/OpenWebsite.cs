@@ -10,7 +10,7 @@ public class OpenWebsite : MonoBehaviour
 
     public void OpenURLDonasi()
     {
-        Application.OpenURL("https://saweria.co/netion");
+        Application.OpenURL("https://saweria.co/resqhero");
     }
 
 }
