@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 
 public class LoadScene : MonoBehaviour
 {
-    public AudioClip clickSound; // Drag and drop your audio clip here in the Inspector
+    public AudioClip clickSound;
     private AudioSource audioSource;
+    public AudioMixer audioMixer;
 
     void Start()
     {
@@ -17,16 +19,33 @@ public class LoadScene : MonoBehaviour
     
     public void SceneManagemen(string loadScene)
     {
-        audioSource.Play();
-        StartCoroutine(WaitAndChangeScene(loadScene));
+        StartCoroutine(PlayClickSoundAndChangeScene(loadScene));
     }
     
-    private IEnumerator WaitAndChangeScene(string sceneName)
+    private IEnumerator PlayClickSoundAndChangeScene(string sceneName)
     {
+        // Play the click sound
+        float bgmVolume = GetMixerVolume("SFXVolume");
+        audioSource.volume = bgmVolume;
+        audioSource.Play();
+        
         // Wait until the sound finishes playing
-        yield return new WaitForSeconds(clickSound.length);
+        yield return new WaitForSecondsRealtime(clickSound.length);
         
         // Change the scene
         SceneManager.LoadScene(sceneName);
+    }
+
+    private float GetMixerVolume(string paramName)
+    {
+        float volume = 1f; // Default volume if parameter not found
+
+        if (audioMixer != null)
+        {
+            audioMixer.GetFloat(paramName, out float dbVolume); // Get volume in decibels from Audio Mixer
+            volume = Mathf.Pow(10f, dbVolume / 20f); // Convert decibels to linear scale
+        }
+
+        return volume;
     }
 }
