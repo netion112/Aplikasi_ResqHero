@@ -14,38 +14,47 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   achievements:
   - id: 1
+    image: {fileID: 21300000, guid: 43d492c47a21aeb4a99e0fd4c34eb00d, type: 3}
     title: Bencana Pertamaku
     description: Selesaikan pembelajaran tentang satu jenis bencana alam.
-    isUnlock: 0
+    isUnlock: 1
   - id: 2
+    image: {fileID: 21300000, guid: e81dfc695f38117448e1d05b28f5b9a0, type: 3}
     title: Pengetahuan Dasar
     description: Selesaikan semua materi dasar tentang bencana alam dan buatan.
     isUnlock: 0
   - id: 3
+    image: {fileID: 21300000, guid: 816e2b89a90f71b44b3be268ff517cdc, type: 3}
     title: Ahli Bencana
     description: Selesaikan semua materi tentang bencana alam.
     isUnlock: 0
   - id: 4
+    image: {fileID: 21300000, guid: d6a4d972d23ad3445990062add279f1a, type: 3}
     title: Master Bencana Buatan
     description: Selesaikan semua materi tentang bencana buatan.
     isUnlock: 0
   - id: 5
+    image: {fileID: 21300000, guid: 43a2874b22d6fa34ca50771754a00b8e, type: 3}
     title: Pustakawan Bencana
     description: Baca semua teks dan ilustrasi dalam aplikasi.
     isUnlock: 0
   - id: 6
+    image: {fileID: 21300000, guid: 4c5b24eff24a283438baa105962f87b3, type: 3}
     title: Peneliti Muda
     description: Berinteraksi dengan 5 ilustrasi simulasi.
     isUnlock: 0
   - id: 7
+    image: {fileID: 21300000, guid: c7806994c4514074ea63bfcf5b130994, type: 3}
     title: Pengamat Gempa
     description: Selesaikan simulasi gempa dengan benar.
     isUnlock: 0
   - id: 8
+    image: {fileID: 21300000, guid: 558fbde97629ac043b5d87efea4e613b, type: 3}
     title: Pahlawan Banjir
     description: Selesaikan simulasi banjir dengan benar.
     isUnlock: 0
   - id: 9
+    image: {fileID: 21300000, guid: bf9077c650d99fb4795ac2caa715c000, type: 3}
     title: Pencegah Kebakaran
     description: Selesaikan simulasi kebakaran dengan benar.
     isUnlock: 0

@@ -232,6 +232,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8595782497971599521}
   - component: {fileID: 6856169843557389637}
+  - component: {fileID: -3875029348386195572}
   m_Layer: 5
   m_Name: VolumeUtamaSlider
   m_TagString: Untagged
@@ -312,6 +313,18 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &-3875029348386195572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7377448664584503926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2aae0ad3537d86144bb19205551f2f09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8769892845930636258
 GameObject:
   m_ObjectHideFlags: 0

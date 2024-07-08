@@ -1,101 +1,219 @@
 using System;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.Video;
 
 public class AudioManager : MonoBehaviour
 {
-    public static AudioManager Instance { get; private set; }
+    public static AudioManager instance;
+
+    [Header("Audio Sources")]
+    public AudioSource BGMSource;
+    public AudioSource SFXSource;
+
+    [Header("Audio Mixer")]
+    public AudioMixer audioMixer;
+
+    // Event untuk perubahan volume
+    public static event Action<float> OnMasterVolumeChanged;
+    public static event Action<float> OnBGMVolumeChanged;
+    public static event Action<float> OnSFXVolumeChanged;
+
+    private const string MasterVolumeParam = "MasterVolume";
+    private const string BGMVolumeParam = "BGMVolume";
+    private const string SFXVolumeParam = "SFXVolume";
 
     [Header("Audio Clips")]
-    public AudioClip combinedClip;  // Menggabungkan audio clip untuk Prestasi, Main, HomeScreen, dan Halaman_Setting
-    public AudioClip gameClip;
-    public AudioClip materiClip;
-    public AudioClip quizClip;
-    public AudioClip[] buttonClickClips;
+    public AudioClip[] BGMClips;
+    public AudioClip[] SFXClips;
 
-    [Header("Volume Sliders")]
-    public Slider masterVolumeSlider;
-    public Slider backgroundMusicVolumeSlider;
-    public Slider buttonClickVolumeSlider;
+    private AudioClip currentBGM;
+
+    [Header("Fade Audio")]
+    public float fadeDuration;
 
     [Header("Video Player")]
     public VideoPlayer videoPlayer;
 
-    [Header("Ending Game Objects")]
-    public GameObject[] endingGameObjects;
+    [Header("Volume Sliders")]
+    public Slider masterVolumeSlider;
+    public Slider BGMVolumeSlider;
+    public Slider SFXVolumeSlider;
 
-    [Header("Toggle for Sound")]
-    public Toggle switchToggle;
+    private float originalBGMVolume;
+    private float originalSFXVolume;
 
-    private AudioSource musicSource;
-    private AudioSource buttonClickSource;
+    private bool isVideoPlaying = false;
+    private float lastPlaybackTime = 0f;
+    private float pauseDetectionThreshold = 0.1f;
 
-    private bool wasPlaying = false;
-    private float backgroundMusicVolume = 1.0f;
-    private float buttonClickVolume = 1.0f;
+    public float masterVolume = 1f;
 
-    // New variables for tracking audio state
-    private static string currentClipName;
-    private static float currentClipTime;
-    
-    // void Awake()
-    // {
-    //     if (Instance == null)
-    //     {
-    //         Instance = this;
-    //         DontDestroyOnLoad(gameObject);
-    //     }
-    //     else
-    //     {
-    //         Destroy(gameObject);
-    //     }
-    // }
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+
+            originalBGMVolume = BGMSource.volume;
+            originalSFXVolume = SFXSource.volume;
+
+            InitializeAudioMixer();
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     private void Start()
     {
-        SetupAudioSources();
-        PlayBackgroundMusic();
-        LoadSettings(); // Load settings on start
-        SetupVolumeSliders();
-        SetupToggle();
-        LoadMusicPosition();
+        PlayBGMForCurrentScene();
+        SetupVideoPlayerEvents();
+        // SetupVolumeSliders();
+    }
 
+    private void InitializeAudioMixer()
+    {
+        SetVolume(MasterVolumeParam, PlayerPrefs.GetFloat(MasterVolumeParam, 1f));
+        SetVolume(BGMVolumeParam, PlayerPrefs.GetFloat(BGMVolumeParam, originalBGMVolume));
+        SetVolume(SFXVolumeParam, PlayerPrefs.GetFloat(SFXVolumeParam, originalSFXVolume));
+    }
+
+    public void SetMasterVolume(float volume)
+    {
+        SetVolume(MasterVolumeParam, volume);
+        OnMasterVolumeChanged?.Invoke(volume);
+    }
+
+    public void SetBGMVolume(float volume)
+    {
+        SetVolume(BGMVolumeParam, volume);
+        OnBGMVolumeChanged?.Invoke(volume);
+    }
+
+    public void SetSFXVolume(float volume)
+    {
+        SetVolume(SFXVolumeParam, volume);
+        OnSFXVolumeChanged?.Invoke(volume);
+    }
+
+    private void SetVolume(string paramName, float volume)
+    {
+        float dbVolume = volume > 0 ? 20f * Mathf.Log10(volume) : -80f;
+        audioMixer.SetFloat(paramName, dbVolume);
+        PlayerPrefs.SetFloat(paramName, volume);
+        PlayerPrefs.Save();
+
+        if (paramName == BGMVolumeParam)
+        {
+            BGMSource.volume = volume * GetVolume(MasterVolumeParam);
+        }
+        else if (paramName == SFXVolumeParam)
+        {
+            SFXSource.volume = volume * GetVolume(MasterVolumeParam);
+        }
+        else if (paramName == MasterVolumeParam)
+        {
+            BGMSource.volume = GetVolume(BGMVolumeParam) * volume;
+            SFXSource.volume = GetVolume(SFXVolumeParam) * volume;
+        }
+    }
+
+    public float GetVolume(string paramName)
+    {
+        if (audioMixer.GetFloat(paramName, out float dbVolume))
+        {
+            return dbVolume > -79f ? Mathf.Pow(10f, dbVolume / 20f) : 0f;
+        }
+        return 1f;
+    }
+
+    private void SetupVideoPlayerEvents()
+    {
         if (videoPlayer != null)
         {
-            videoPlayer.started += OnVideoStart;
-            videoPlayer.loopPointReached += OnVideoEnd;
-            videoPlayer.prepareCompleted += OnVideoEnd;
+            videoPlayer.started += OnVideoStarted;
+            videoPlayer.loopPointReached += OnVideoEnded;
         }
     }
 
     private void Update()
     {
-        if (endingGameObjects != null && endingGameObjects.Length > 0)
-        {
-            CheckEndingCondition();
-        }
-
         if (videoPlayer != null)
         {
-            if (wasPlaying && !videoPlayer.isPlaying)
+            if (videoPlayer.isPlaying && !isVideoPlaying)
             {
-                OnVideoPause();
+                OnVideoStarted(videoPlayer);
             }
-
-            if (!wasPlaying && videoPlayer.isPlaying)
+            else if (isVideoPlaying)
             {
-                OnVideoStart(videoPlayer);
+                if (Mathf.Approximately((float)videoPlayer.time, lastPlaybackTime))
+                {
+                    pauseDetectionThreshold -= Time.deltaTime;
+                    if (pauseDetectionThreshold <= 0)
+                    {
+                        OnVideoPaused();
+                    }
+                }
+                else
+                {
+                    lastPlaybackTime = (float)videoPlayer.time;
+                    pauseDetectionThreshold = 0.1f;
+                }
             }
-
-            wasPlaying = videoPlayer.isPlaying;
         }
-        
-        if (musicSource != null && musicSource.isPlaying)
+    }
+
+    private void OnVideoStarted(VideoPlayer vp)
+    {
+        isVideoPlaying = true;
+        StartCoroutine(FadeOutAllAudio());
+    }
+
+    private void OnVideoEnded(VideoPlayer vp)
+    {
+        isVideoPlaying = false;
+        StartCoroutine(FadeInAllAudio());
+    }
+
+    private void OnVideoPaused()
+    {
+        isVideoPlaying = false;
+        StartCoroutine(FadeInAllAudio());
+    }
+
+    private IEnumerator FadeOutAllAudio()
+    {
+        float elapsedTime = 0f;
+        while (elapsedTime < fadeDuration)
         {
-            currentClipName = musicSource.clip.name;
-            currentClipTime = musicSource.time;
+            elapsedTime += Time.deltaTime;
+            float t = elapsedTime / fadeDuration;
+
+            BGMSource.volume = Mathf.Lerp(originalBGMVolume, 0f, t);
+            SFXSource.volume = Mathf.Lerp(originalSFXVolume, 0f, t);
+
+            yield return null;
+        }
+    }
+
+    private IEnumerator FadeInAllAudio()
+    {
+        float elapsedTime = 0f;
+        while (elapsedTime < fadeDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            float t = elapsedTime / fadeDuration;
+
+            BGMSource.volume = Mathf.Lerp(0f, originalBGMVolume, t);
+            SFXSource.volume = Mathf.Lerp(0f, originalSFXVolume, t);
+
+            yield return null;
         }
     }
 
@@ -107,289 +225,66 @@ public class AudioManager : MonoBehaviour
     private void OnDisable()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
-
-        if (videoPlayer != null)
-        {
-            videoPlayer.started -= OnVideoStart;
-            videoPlayer.loopPointReached -= OnVideoEnd;
-            videoPlayer.prepareCompleted -= OnVideoEnd;
-        }
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        PlayBackgroundMusic();
-        LoadSettings(); // Load settings on scene load
+        PlayBGMForCurrentScene();
     }
 
-    private void SetupAudioSources()
+    private void PlayBGMForCurrentScene()
     {
-        if (musicSource == null)
+        Scene activeScene = SceneManager.GetActiveScene();
+        string activeSceneName = activeScene.name;
+        string[] words = activeSceneName.Split('_');
+
+        string firstWord = words.Length > 0 ? words[0] : string.Empty;
+        AudioClip selectedClip = null;
+
+        if (firstWord == "HomeScreen" || firstWord == "Main" || firstWord == "Prestasi" || firstWord == "SelectLevel" || firstWord == "Halaman")
         {
-            musicSource = gameObject.AddComponent<AudioSource>();
-            musicSource.loop = true;
+            selectedClip = BGMClips[0]; // HomeScreen music
+        }
+        else if (firstWord == "Materi")
+        {
+            selectedClip = BGMClips[1];
+        }
+        else if (firstWord == "Quiz")
+        {
+            selectedClip = BGMClips[2];
+        }
+        else if (firstWord == "Game")
+        {
+            selectedClip = BGMClips[3];
         }
 
-        if (buttonClickSource == null)
+        if (selectedClip != null && selectedClip != currentBGM)
         {
-            buttonClickSource = gameObject.AddComponent<AudioSource>();
-        }
-    }
-
-    private void PlayBackgroundMusic()
-    {
-        string sceneName = SceneManager.GetActiveScene().name;
-        string[] activeSceneName = sceneName.Split('_');
-        string firstSceneWord = activeSceneName.Length > 0 ? activeSceneName[0] : string.Empty;
-        
-        AudioClip clip = GetClipForScene(firstSceneWord);
-    
-        if (clip != null && musicSource != null)
-        {
-            // Jika clip sama dengan yang sebelumnya dan masih ada waktu tersimpan
-            if (clip.name == currentClipName && currentClipTime > 0)
-            {
-                // Jika sudah bermain dan clipnya sama, jangan lakukan apa-apa
-                if (musicSource.isPlaying && musicSource.clip == clip)
-                {
-                    return;
-                }
-                
-                musicSource.clip = clip;
-                musicSource.time = currentClipTime;
-                musicSource.Play();
-            }
-            else
-            {
-                // Jika clip berbeda atau tidak ada waktu tersimpan, mulai dari awal
-                musicSource.clip = clip;
-                musicSource.time = 0;
-                musicSource.Play();
-            }
-    
-            currentClipName = clip.name;
-            musicSource.volume = backgroundMusicVolume;
-        }
-        else if (clip == null)
-        {
-            Debug.LogError($"No background music clip found for scene: {sceneName}");
+            StartCoroutine(FadeOutInBGM(selectedClip));
         }
     }
 
-    private AudioClip GetClipForScene(string sceneName)
+    private IEnumerator FadeOutInBGM(AudioClip newClip)
     {
-        if (sceneName == "Prestasi" || sceneName == "Main" || sceneName == "HomeScreen" || sceneName == "Halaman" || sceneName == "SelectLevel")
+        float startVolume = BGMSource.volume;
+        for (float t = 0; t < fadeDuration; t += Time.deltaTime)
         {
-            return combinedClip;
+            BGMSource.volume = Mathf.Lerp(startVolume, 0, t / fadeDuration);
+            yield return null;
         }
-        else if (sceneName.StartsWith("Game"))
-        {
-            return gameClip;
-        }
-        else if (sceneName.StartsWith("Materi"))
-        {
-            return materiClip;
-        }
-        else if (sceneName.StartsWith("Quiz"))
-        {
-            return quizClip;
-        }
-        else
-        {
-            return null;
-        }
-    }
+        BGMSource.volume = 0;
 
-    private void CheckEndingCondition()
-    {
-        bool anyActive = false;
+        BGMSource.clip = newClip;
+        BGMSource.loop = true;
+        BGMSource.Play();
+        currentBGM = newClip;
 
-        foreach (var obj in endingGameObjects)
+        for (float t = 0; t < fadeDuration; t += Time.deltaTime)
         {
-            if (obj != null && obj.activeSelf)
-            {
-                anyActive = true;
-                break;
-            }
+            BGMSource.volume = Mathf.Lerp(0, startVolume, t / fadeDuration);
+            yield return null;
         }
-
-        if (anyActive && musicSource != null)
-        {
-            musicSource.volume = 0; // Mute background music
-        }
-        else if (musicSource != null)
-        {
-            musicSource.volume = backgroundMusicVolumeSlider != null ? backgroundMusicVolumeSlider.value : backgroundMusicVolume; // Set background music volume to slider value
-        }
-    }
-
-    public void PlayButtonClick(int clipIndex)
-    {
-        if (buttonClickClips != null && buttonClickClips.Length > 0 && clipIndex >= 0 && clipIndex < buttonClickClips.Length)
-        {
-            buttonClickSource.PlayOneShot(buttonClickClips[clipIndex], buttonClickVolume);
-        }
-        else
-        {
-            Debug.LogError("Button click clip not assigned or index out of range!");
-        }
-    }
-
-    public void SetMasterVolume(float volume)
-    {
-        AudioListener.volume = volume;
-        PlayerPrefs.SetFloat("MasterVolume", volume); // Save master volume
-    }
-
-    public void SetBackgroundMusicVolume(float volume)
-    {
-        backgroundMusicVolume = volume;
-        if (musicSource != null)
-        {
-            musicSource.volume = volume;
-        }
-        PlayerPrefs.SetFloat("BackgroundMusicVolume", volume); // Save background music volume
-    }
-
-    public void SetButtonClickVolume(float volume)
-    {
-        buttonClickVolume = volume;
-        PlayerPrefs.SetFloat("ButtonClickVolume", volume); // Save button click volume
-    }
-
-    private void SetupVolumeSliders()
-    {
-        if (masterVolumeSlider != null)
-        {
-            masterVolumeSlider.onValueChanged.AddListener(SetMasterVolume);
-            masterVolumeSlider.value = PlayerPrefs.GetFloat("MasterVolume", 0.75f);
-        }
-
-        if (backgroundMusicVolumeSlider != null)
-        {
-            backgroundMusicVolumeSlider.onValueChanged.AddListener(SetBackgroundMusicVolume);
-            backgroundMusicVolumeSlider.value = PlayerPrefs.GetFloat("BackgroundMusicVolume", 0.75f);
-        }
-
-        if (buttonClickVolumeSlider != null)
-        {
-            buttonClickVolumeSlider.onValueChanged.AddListener(SetButtonClickVolume);
-            buttonClickVolumeSlider.value = PlayerPrefs.GetFloat("ButtonClickVolume", 0.75f);
-        }
-    }
-
-    private void SetupToggle()
-    {
-        if (switchToggle != null)
-        {
-            switchToggle.onValueChanged.AddListener(delegate { ToggleSound(switchToggle.isOn); });
-            switchToggle.isOn = PlayerPrefs.GetInt("ToggleSound", 1) == 1; // Load initial state
-            ToggleSound(switchToggle.isOn); // Set initial state
-        }
-    }
-
-    private void ToggleSound(bool isOn)
-    {
-        if (isOn)
-        {
-            AudioListener.volume = masterVolumeSlider != null ? masterVolumeSlider.value : 1.0f;
-            PlayerPrefs.SetInt("ToggleSound", 1); // Save toggle state
-        }
-        else
-        {
-            AudioListener.volume = 0;
-            PlayerPrefs.SetInt("ToggleSound", 0); // Save toggle state
-        }
-    }
-
-    private void OnVideoStart(VideoPlayer vp)
-    {
-        if (musicSource != null)
-        {
-            musicSource.volume = 0;
-        }
-    }
-
-    private void OnVideoPause()
-    {
-        if (musicSource != null)
-        {
-            musicSource.volume = backgroundMusicVolumeSlider != null ? backgroundMusicVolumeSlider.value : backgroundMusicVolume;
-        }
-    }
-
-    private void OnVideoEnd(VideoPlayer vp)
-    {
-        if (musicSource != null)
-        {
-            musicSource.volume = backgroundMusicVolumeSlider != null ? backgroundMusicVolumeSlider.value : backgroundMusicVolume;
-        }
-    }
-
-    public void Refresh()
-    {
-        SetMasterVolume(PlayerPrefs.GetFloat("MasterVolume", 0.75f));
-        SetBackgroundMusicVolume(PlayerPrefs.GetFloat("BackgroundMusicVolume", 0.75f));
-        SetButtonClickVolume(PlayerPrefs.GetFloat("ButtonClickVolume", 0.75f));
-
-        if (masterVolumeSlider != null)
-        {
-            masterVolumeSlider.value = PlayerPrefs.GetFloat("MasterVolume", 0.75f);
-        }
-
-        if (backgroundMusicVolumeSlider != null)
-        {
-            backgroundMusicVolumeSlider.value = PlayerPrefs.GetFloat("BackgroundMusicVolume", 0.75f);
-        }
-
-        if (buttonClickVolumeSlider != null)
-        {
-            buttonClickVolumeSlider.value = PlayerPrefs.GetFloat("ButtonClickVolume", 0.75f);
-        }
-    }
-
-    private void OnApplicationPause(bool pause)
-    {
-        if (pause)
-        {
-            SaveMusicPosition();
-        }
-    }
-
-    private void OnApplicationQuit()
-    {
-        SaveMusicPosition();
+        BGMSource.volume = startVolume;
     }
     
-    private void SaveMusicPosition()
-    {
-        if (musicSource != null && musicSource.clip != null)
-        {
-            currentClipName = musicSource.clip.name;
-            currentClipTime = musicSource.time;
-            PlayerPrefs.SetString("CurrentClipName", currentClipName);
-            PlayerPrefs.SetFloat("CurrentClipTime", currentClipTime);
-            PlayerPrefs.Save();
-        }
-    }
-    
-    private void LoadMusicPosition()
-    {
-        currentClipName = PlayerPrefs.GetString("CurrentClipName", "");
-        currentClipTime = PlayerPrefs.GetFloat("CurrentClipTime", 0f);
-    }
-
-    private void LoadSettings()
-    {
-        // Load and apply saved settings
-        float masterVolume = PlayerPrefs.GetFloat("MasterVolume", 0.75f);
-        float backgroundMusicVolume = PlayerPrefs.GetFloat("BackgroundMusicVolume", 0.75f);
-        float buttonClickVolume = PlayerPrefs.GetFloat("ButtonClickVolume", 0.75f);
-        bool toggleSound = PlayerPrefs.GetInt("ToggleSound", 1) == 1;
-
-        SetMasterVolume(masterVolume);
-        SetBackgroundMusicVolume(backgroundMusicVolume);
-        SetButtonClickVolume(buttonClickVolume);
-        ToggleSound(toggleSound);
-    }
 }
