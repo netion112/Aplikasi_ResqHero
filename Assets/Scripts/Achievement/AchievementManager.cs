@@ -131,6 +131,7 @@ public class AchievementManager : MonoBehaviour
     public void GetTotalUnlockedAchievements()
     {
         int unlockedCount = 0;
+        
         foreach (Achievement achievement in achievementDatabase.achievements)
         {
             if (achievement.isUnlock)
@@ -140,7 +141,8 @@ public class AchievementManager : MonoBehaviour
         }
 
         achievementStatus.text = $"{unlockedCount} OF {achievementDatabase.achievements.Count} ACHIEVEMENTS EARNED";
-        achievementPercent.text = $"{(float)unlockedCount / achievementDatabase.achievements.Count * 100f}%";
+        int achievementPercentage = Mathf.RoundToInt((float)unlockedCount / achievementDatabase.achievements.Count * 100f);
+        achievementPercent.text = $"{achievementPercentage}%";
         achievementPoint.text = $"{unlockedCount}";
         slider.maxValue = achievementDatabase.achievements.Count;
         slider.value = unlockedCount;
