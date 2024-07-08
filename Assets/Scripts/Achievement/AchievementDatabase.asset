@@ -58,3 +58,8 @@ MonoBehaviour:
     title: Pencegah Kebakaran
     description: Selesaikan simulasi kebakaran dengan benar.
     isUnlock: 0
+  - id: 9
+    image: {fileID: 21300000, guid: bf9077c650d99fb4795ac2caa715c000, type: 3}
+    title: Pencegah Kebakaran
+    description: Selesaikan simulasi kebakaran dengan benar.
+    isUnlock: 0
