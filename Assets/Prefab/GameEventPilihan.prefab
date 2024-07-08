@@ -384,6 +384,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 7469773997898200960, guid: 8aadb2b54a6e2fd4c8d706ea6d5364d4, type: 3}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: PlayButtonClick
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &191478807116227077
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -397,9 +409,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   videoPlayer: {fileID: 0}
-  objectToMove: {fileID: 4354705661199366864}
-  moveAmount: 5.8
-  returnSpeed: 3
+  objectToRaise: {fileID: 0}
+  raiseAmount: 1
+  raiseSpeed: 1
 --- !u!1 &6153654185787472982
 GameObject:
   m_ObjectHideFlags: 0
