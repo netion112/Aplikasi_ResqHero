@@ -26,7 +26,7 @@ public class ButtonMenu : MonoBehaviour
         SetButtonState(Button_Beranda, false);
         SetButtonState(Button_Materi, false);
         SetButtonState(Button_Prestasi, false);
-        SetButtonState(Button_Bermain, false);
+        SetButtonState(Button_Bermain, true);
 
         if (firstWord == "HomeScreen")
         {
